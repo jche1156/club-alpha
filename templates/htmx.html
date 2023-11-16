@@ -1,0 +1,15 @@
+<html>
+<head>
+    <script src="https://unpkg.com/htmx.org@1.9.8" integrity="sha384-rgjA7mptc2ETQqXoYC3/zJvkU7K/aP44Y+z7xQuJiVnB/422P/Ak+F/AqFR7E4Wr" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div hx-target="this" hx-swap="outerHTML">
+        <div><label>First Name</label>: Joe</div>
+        <div><label>Last Name</label>: Blow</div>
+        <div><label>Email</label>: joe@blow.com</div>
+        <button hx-get="/htmx/edit" class="btn btn-primary">
+        Click To Edit
+        </button>
+    </div>
+</body>
+</html>
