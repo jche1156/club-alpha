@@ -1,6 +1,17 @@
-<html>
-    <body>
-        <div class="navigation" hx-boost="true"><a href="/">home</a></div>
-        <h1>{{ title }}</h1>
-    </body>
-</html>
+<!-- prettier-ignore -->
+{% extends "base.html" %}
+ 
+{% block title %}Hello!{% endblock %}
+ 
+{% block content %}
+<h1 class="text-center text-3xl text-fuchsia-800 uppercase">{{ title }}</h1>
+<h2 class="text-green-500">Howdy!</h2>
+<div class="md h-56 grid grid-cols-2 gap-24 content-start">
+  <div><a class="outline outline-2" href="/alpine">Alpine</a></div>
+  <div><a class="outline outline-2" href="/htmx">Htmx</a></div>
+  <div><a class="outline outline-2" href="/pages/dos">Dos</a></div>
+  <div><a class="outline outline-2" href="/pages/tres">Tres</a></div>
+  <div><a class="outline outline-2" href="/pages/quattro">Quattro</a></div>
+  <div><a class="outline outline-2" href="/pages/cinco">Cinco</a></div>
+</ul>
+{% endblock %}

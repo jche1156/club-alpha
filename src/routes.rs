@@ -1,5 +1,5 @@
 pub mod alpine;
-pub mod greet;
-pub mod hello;
+pub mod fallback;
 pub mod htmx;
 pub mod magazine;
+pub mod article;

@@ -7,5 +7,7 @@ pub struct MagazineTemplate<'a> {
 }
 
 pub async fn handler() -> MagazineTemplate<'static> {
-    MagazineTemplate { title: "Magazine World" }
+    MagazineTemplate {
+        title: "Magazine World",
+    }
 }

@@ -1,8 +1,6 @@
-use axum::{
-    routing::{get, post},
-    Router,
-};
+use axum::{routing::get, Router};
 use std::net::SocketAddr;
+use tower_http::services::ServeDir;
 
 mod routes;
 
@@ -12,13 +10,18 @@ async fn main() {
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     tracing::debug!("listening on {}", addr);
 
+    let assets_path = std::env::current_dir().unwrap();
     let app = Router::new()
-        .route("/", get(routes::hello::handler))
+        .route("/", get(routes::magazine::handler))
         .route("/alpine", get(routes::alpine::handler))
-        .route("/pages", get(routes::magazine::handler))
+        .route("/pages/*<title>", get(routes::article::handler))
         .route("/htmx", get(routes::htmx::read))
         .route("/htmx/edit", get(routes::htmx::edit))
-        .route("/*<name>", get(routes::greet::handler));
+        .route("/*<name>", get(routes::fallback::handler))
+        .nest_service(
+            "/assets",
+            ServeDir::new(format!("{}/assets", assets_path.to_str().unwrap())),
+        );
 
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
