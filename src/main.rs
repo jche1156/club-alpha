@@ -4,7 +4,7 @@ use axum::{
 };
 use std::net::SocketAddr;
 
-mod showcase;
+mod routes;
 
 #[tokio::main]
 async fn main() {
@@ -13,11 +13,12 @@ async fn main() {
     tracing::debug!("listening on {}", addr);
 
     let app = Router::new()
-        .route("/", get(showcase::hello::handler))
-        .route("/alpine", get(showcase::alpine::handler))
-        .route("/htmx", get(showcase::htmx::read))
-        .route("/htmx/edit", get(showcase::htmx::edit))
-        .route("/*<name>", get(showcase::greet::handler));
+        .route("/", get(routes::hello::handler))
+        .route("/alpine", get(routes::alpine::handler))
+        .route("/pages", get(routes::magazine::handler))
+        .route("/htmx", get(routes::htmx::read))
+        .route("/htmx/edit", get(routes::htmx::edit))
+        .route("/*<name>", get(routes::greet::handler));
 
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
