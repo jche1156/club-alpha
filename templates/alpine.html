@@ -4,6 +4,14 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
+    <div class="top-nav">
+        <div id="nav" class="navigation" hx-boost="true">
+            <div class="navigation-items" preload="mouseover">
+                <div><a href="/">home</a></div>
+            </div>
+        </div>
+    </div>
+
     <h1 x-data="{ message: 'I HEART Alpine' }" x-text="message"></h1>
     <p>
         Hello, {{ name }}, here's your Alpine tips and tricks page!
